@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block content %} {% for posts in myapp %}
+<div style="border: 1px solid black">
+  <img src="{{ post.att.image.url }}" width="300px" />
+  <h4>{{posts.title}}</h4>
+  <p>{{posts.content}}</p>
+  <p>{{posts.time_stamp}}</p>
+</div>
+<!--qwerty-->
+{% for post in myapp %}
+<div style="border: 1px solid black; margin-bottom: 20px">
+  {% for att in post.att %}
+  <img src="{{ att.image.url }}" width="500px" />
+  {% endfor %}
+</div>
+{% endfor %} {% endfor %} {% endblock %}
