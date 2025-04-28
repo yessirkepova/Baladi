@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,9 +6,369 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style>
+    * {
+      font-family: 'Franklin Gothic Light', 'Arial Narrow', Arial, sans-serif;
+    }
+    .header {
+      padding-left: 170px;
+      display: flex;
+      gap: 500px;
+    }
+    .logo {
+      display: flex;
+    }
+    li {
+      list-style: none;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+    .city {
+      padding-top: 20px;
+      padding-left: 50px;
+      border-style: none;
+    }
+    .find_special {
+      display: flex;
+      gap: 20px;
+    }
+    button {
+      border-radius: 15px;
+    }
+    .main {
+      padding-left: 170px;
+      padding-top: 70px;
+    }
+    .frel {
+      font-size: 40px;
+    }
+    .containers {
+      gap: 10px;
+      padding-left: 170px;
+      display: flex;
+      padding-top: 100px;
+    }
+    .add_01 {
+      background-color: rgb(225, 225, 225);
+      border-radius: 15px;
+      width: 500px;
+      padding: 20px;
+      margin-top: 10px;
+    }
+    .add_02 {
+      background-color: rgb(225, 225, 225);
+      border-radius: 15px;
+      width: 500px;
+      padding: 20px;
+      margin-top: 10px;
+    }
+    .cards {
+      display: flex;
+      gap: 10px;
+    }
+    .add_0 {
+      width: 225px;
+      background-color: dimgray;
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 12px;
+      height: 105px;
+    }
+    /*    ------------------ХУЙНЯ полная----------------------     */
+    .category-list {
+      margin: auto;
+      padding-left: 170px;
+      padding-right: 170px;
+      padding-top: 50px;
+      padding-bottom: 70px;
+      background: #fff;
+    }
+    .category-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      border-radius: 15px;
+    }
+    .category-item:last-child {
+      border-bottom: none;
+    }
+    .category-item:hover {
+      background: #f0f4ff;
+    }
+    .category-item.active {
+      background: #f6f8fc;
+      font-weight: bold;
+    }
+    .price {
+      color: #666;
+    }
+    .footer {
+      background-color: #f1f1f1;
+      padding: 2rem;
+      color: #333;
+    }
+
+    .footer__columns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      gap: 2rem;
+    }
+
+    .footer__col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+    }
+
+    .footer__col ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .footer__col a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .footer__col a:hover {
+      text-decoration: underline;
+    }
+
+    .footer__support {
+      margin-top: 1rem;
+    }
+
+    .footer__support button {
+      background: #eee;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .footer__support p {
+      font-size: 0.8rem;
+      color: gray;
+      margin-top: 0.3rem;
+    }
+
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: auto;
+      gap: 1rem;
+    }
+
+    .footer__apps img,
+    .footer__social img {
+      margin-right: 1rem;
+    }
+
+    .footer__copy {
+      text-align: center;
+      font-size: 0.75rem;
+      color: gray;
+      max-width: 800px;
+      margin: 2rem auto 0;
+    }
+
+    .footer__copy a {
+      color: gray;
+    }
+    .youtube {
+      width: 30px;
+    }
+    .play {
+      width: 30px;
+    }
+    .app {
+      width: 30px;
+    }
+    .wk {
+      width: 30px;
+    }
+    .telega {
+      width: 30px;
+    }
+    a {
+      text-decoration: none;
+    }
+  </style>
   <body>
-    <header>FREE_FRELANCER</header>
-    <main>{% block content %} {% endblock %}</main>
-    <footer></footer>
+    <div class="header">
+      <div class="logo">
+        <h2>FreeCOIN.COM</h2>
+        <div class="city">
+          <select name="city" id="">
+            <option value="" disabled selected>Shymkent</option>
+            <option value="">Astana</option>
+            <option value="">Shu</option>
+            <option value="">Almaty</option>
+            <option value="">Atyray</option>
+            <option value="">Turkestan</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="log_in">
+        <ul>
+          <li><a href="log_in.html">Вход для специалистов</a></li>
+          <li>Вход для клиентов</li>
+        </ul>
+      </div>
+    </div>
+    <!---------------   MAIN    ------->
+    <div class="main">
+      <h1 class="frel">Фрилансеры в Shymkent</h1>
+      <p>Найдите частного фрилансера под вашу задачу и бюджет. Бесплатно.</p>
+      <div class="find_special">
+        <button style="background-color: red">Найти специалиста</button>
+        <button style="background-color: black; color: aliceblue">Узнать цены</button>
+        <p>
+          Задайте специалистам вопросы по задаче,<br />
+          цене, материалам
+        </p>
+      </div>
+    </div>
+    <div class="containers">
+      <div class="first2">
+        <div class="add_01">
+          <h4>Не надо искать и звонить<br /></h4>
+          <p>
+            Вы кратко описываете задачу,<br />
+            а мы рассылаем её подходящим специалистам. <br />
+            Они будут присылать предложения.
+          </p>
+        </div>
+        <div class="add_02">
+          <p>
+            Сколько стоит услуга Вы можете сами указать, сколько <br />
+            готовы заплатить. Или подождать <br />
+            предложений специалистов.
+          </p>
+          <button type="submit">Посмотреть цены</button>
+        </div>
+      </div>
+      <div class="second2">
+        <div class="add_01">
+          <h3>Частные специалисты</h3>
+          <p>
+            Вы сможете пообщаться, сравнить <br />
+            отзывы, опыт и выбрать того, <br />
+            кто понравится больше.
+          </p>
+        </div>
+        <div class="cards">
+          <div class="add_0">
+            <p>Настоящие отзывы</p>
+            <button type="submit">Cмотреть</button>
+          </div>
+          <div class="add_0">
+            <p>Это бесплатно</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="category-list">
+      <div class="category-item active">
+        <span>Программисты</span>
+        <span class="price">от 800 ₽ за ч</span>
+      </div>
+      <div class="category-item">
+        <span>Маркетологи</span>
+        <span class="price">от 3000 ₽ за усл.</span>
+      </div>
+      <div class="category-item">
+        <span>Дизайнеры</span>
+        <span class="price">от 1000 ₽ за усл.</span>
+      </div>
+      <div class="category-item">
+        <span>Услуги системных администраторов</span>
+        <span class="price">от 900 ₽ за ч</span>
+      </div>
+      <div class="category-item">
+        <span>Верстальщики</span>
+        <span class="price">от 1500 ₽ за усл.</span>
+      </div>
+      <div class="category-item">
+        <span>Работа с текстами</span>
+        <span class="price">от 200 ₽ за 1000 зн.</span>
+      </div>
+      <div class="category-item">
+        <span>IT-аутсорсинг</span>
+        <span class="price">от 1500 ₽ за мес.</span>
+      </div>
+      <div class="category-item">
+        <span>Системная интеграция</span>
+        <span class="price">от 2500 ₽ за усл.</span>
+      </div>
+    </div>
+    <!---    FOOTER    -->
+    <footer class="footer">
+      <div class="footer__columns">
+        <div class="footer__col">
+          <ul>
+            <li><a href="#">Найти специалиста</a></li>
+            <li><a href="#">Все услуги</a></li>
+            <li><a href="#">Все отзывы</a></li>
+            <li><a href="#">Условия использования</a></li>
+            <li><a href="#">Каталог ссылок</a></li>
+            <li><a href="#">Мобильная версия</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <strong>Работа в Shymkent</strong>
+          <ul>
+            <li><a href="#">Вход для специалистов</a></li>
+            <li><a href="#">Партнёрская программа</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__apps">
+          <img
+            class="play"
+            src="https://www.svgrepo.com/show/327366/logo-google-playstore.svg"
+            alt="Google Play"
+          />
+          <img
+            class="app"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSegCTTRoGmQT1cPCUSO7fLmNAZwN9OOUtlg&s"
+            alt="App Store"
+          />
+          <img
+            class="telega"
+            src="https://img.icons8.com/ios_filled/512/telegram.png"
+            alt="telega"
+          />
+        </div>
+        <div class="footer__social">
+          <img class="wk" src="https://cdn-icons-png.flaticon.com/512/81/81893.png" alt="VK" />
+          <img
+            class="youtube"
+            src="https://www.iconpacks.net/icons/1/free-youtube-icon-123-thumb.png"
+            alt="YouTube"
+          />
+        </div>
+      </div>
+
+      <div class="footer__copy">
+        <p>Информация, опубликованная на данном сайте, предназначена для любой аудитории...</p>
+        <p>© Shymkent, 2007–2025</p>
+        <p><strong>Shymkent</strong> — <a href="#">сменить страну</a></p>
+      </div>
+    </footer>
   </body>
 </html>
