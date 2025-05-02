@@ -10,7 +10,10 @@ def Post_list(request):
 
 
 def Post_details(request, pid):
-  post = Posts.object.get(pk = pid)
+  post = Posts.objects.get(pk=pid)
   att= PostAttachments.objects.filter(post_id = pid)
   return render(request, 'posts/details_page.html', {'post':post , 'images':att})
-
+def log_in(request):
+    return render(request, 'posts/log_in.html')
+def sign_in(request):
+    return render(request, 'posts/Sign_in.html')

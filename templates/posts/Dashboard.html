@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+<div class="search-container">
+  <h2>Поиск проектов</h2>
+
+  <form class="search-form" method="get">
+    <div class="input-group">
+      <input
+        type="text"
+        name="q"
+        class="search-input"
+        placeholder="Поиск по названию или описанию..."
+        value="{{ request.GET.q }}"
+      />
+    </div>
+
+    <div class="input-group">
+      <input
+        type="number"
+        name="min_budget"
+        class="search-input"
+        placeholder="Мин. бюджет"
+        value="{{ request.GET.min_budget }}"
+      />
+      <input
+        type="number"
+        name="max_budget"
+        class="search-input"
+        placeholder="Макс. бюджет"
+        value="{{ request.GET.max_budget }}"
+      />
+    </div>
+
+    <button type="submit" class="search-button">Искать</button>
+  </form>
+
+  <div class="projects-list">
+    {% for project in projects %}
+    <div class="project-card">
+      <h3 class="project-title">{{ project.title }}</h3>
+      <p class="project-description">{{ project.description|truncatechars:100 }}</p>
+      <p class="project-budget"><strong>Бюджет:</strong> {{ project.budget }} ₸</p>
+      <a href="{% url 'project_detail' project.pk %}" class="project-link">Подробнее</a>
+    </div>
+    {% empty %}
+    <p class="no-projects">Нет проектов по заданным параметрам.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
