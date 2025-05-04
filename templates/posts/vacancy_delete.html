@@ -1,0 +1,9 @@
+{% extends "posts/base.html" %} {% block content %}
+<h1>Удалить вакансию?</h1>
+<p>Ты точно хочешь удалить "{{ vacancy.title }}"?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">✅ Удалить</button>
+  <a href="{% url 'vacancy_list' %}">❌ Отмена</a>
+</form>
+{% endblock %}

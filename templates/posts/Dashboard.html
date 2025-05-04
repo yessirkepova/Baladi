@@ -1,49 +1,110 @@
 {% extends 'base.html' %} {% block content %}
-<div class="search-container">
-  <h2>Поиск проектов</h2>
-
-  <form class="search-form" method="get">
-    <div class="input-group">
-      <input
-        type="text"
-        name="q"
-        class="search-input"
-        placeholder="Поиск по названию или описанию..."
-        value="{{ request.GET.q }}"
-      />
-    </div>
-
-    <div class="input-group">
-      <input
-        type="number"
-        name="min_budget"
-        class="search-input"
-        placeholder="Мин. бюджет"
-        value="{{ request.GET.min_budget }}"
-      />
-      <input
-        type="number"
-        name="max_budget"
-        class="search-input"
-        placeholder="Макс. бюджет"
-        value="{{ request.GET.max_budget }}"
-      />
-    </div>
-
-    <button type="submit" class="search-button">Искать</button>
-  </form>
-
-  <div class="projects-list">
-    {% for project in projects %}
-    <div class="project-card">
-      <h3 class="project-title">{{ project.title }}</h3>
-      <p class="project-description">{{ project.description|truncatechars:100 }}</p>
-      <p class="project-budget"><strong>Бюджет:</strong> {{ project.budget }} ₸</p>
-      <a href="{% url 'project_detail' project.pk %}" class="project-link">Подробнее</a>
-    </div>
-    {% empty %}
-    <p class="no-projects">Нет проектов по заданным параметрам.</p>
-    {% endfor %}
+<header class="navbar">
+  <div class="container">
+    <h1 class="logo">FreelanceHub</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Поиск</a></li>
+        <li><a href="#">Профиль</a></li>
+      </ul>
+    </nav>
   </div>
+</header>
+
+<div class="main-content">
+  <aside class="filters">
+    <h2>Фильтры</h2>
+    <label><input type="checkbox" /> Верстальщик</label>
+    <label><input type="checkbox" /> Разработчик</label>
+    <label><input type="checkbox" /> SMM-менеджер</label>
+    <label><input type="checkbox" /> Дизайнер</label>
+    <button class="filter-btn">Применить</button>
+  </aside>
+
+  <section class="vacancy-list">
+    <div class="vacancy-card">
+      <h3>Нужен фронтенд разработчик</h3>
+      <p>Описание задачи...</p>
+      <button class="apply-btn">Откликнуться</button>
+    </div>
+    <div class="vacancy-card">
+      <h3>Верстка лендинга</h3>
+      <p>Нужен адаптив под все экраны</p>
+      <button class="apply-btn">Откликнуться</button>
+    </div>
+    <!-- Ещё карточки -->
+  </section>
 </div>
+
+<style>
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #f5f5f5;
+  }
+  .navbar {
+    background: #1f1f1f;
+    color: white;
+    padding: 1rem 2rem;
+  }
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  .navbar a {
+    color: white;
+    text-decoration: none;
+  }
+  .main-content {
+    display: flex;
+    padding: 2rem;
+  }
+  .filters {
+    width: 250px;
+    background: white;
+    padding: 1rem;
+    margin-right: 2rem;
+    border-radius: 10px;
+  }
+  .input {
+  }
+  .filters h2 {
+    margin-bottom: 1rem;
+  }
+  .filter-btn {
+    margin-top: 1rem;
+    background: #e63946;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .vacancy-list {
+    flex: 1;
+  }
+  .vacancy-card {
+    background: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+  }
+  .apply-btn {
+    background: #e63946;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+</style>
 {% endblock %}

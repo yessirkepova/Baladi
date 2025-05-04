@@ -1,0 +1,6 @@
+{% extends "posts/base.html" %} {% block content %}
+<h1>{{ vacancy.title }}</h1>
+<p>{{ vacancy.description }}</p>
+<p><strong>Опубликовано:</strong> {{ vacancy.posted_at }}</p>
+<a href="{% url 'vacancy_list' %}">🔙 Назад</a>
+{% endblock %}
