@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ user.username }}'s Profile</title>
+  </head>
+  <body>
+    <h1>{{ user.username }}</h1>
+    <p>{{ profile.bio }}</p>
+
+    <h2>Followers:</h2>
+    <ul>
+      {% for follower in profile.followers.all %}
+      <li>{{ follower.username }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

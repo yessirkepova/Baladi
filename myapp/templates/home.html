@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Freelancee.com</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        background: #f0f2f5;
+      }
+
+      header {
+        background: #0d1a3a;
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: bold;
+      }
+
+      .container {
+        padding: 40px;
+        text-align: center;
+      }
+
+      h1 {
+        color: #0d1a3a;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div><strong>Freelancee.com</strong></div>
+      <nav>
+        <a href="{% url 'register' %}">Регистрация</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Добро пожаловать!</h1>
+      <p>Это главная страница фриланс-платформы.</p>
+    </div>
+  </body>
+</html>

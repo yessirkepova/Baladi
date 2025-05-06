@@ -1,40 +1,29 @@
 from django.db import models
-from django.utils import timezone
-from accounts.models import User  # кастомная модель юзера
+from django.contrib.auth.models import User
 
-class Posts(models.Model):
-    title = models.CharField(verbose_name='Заголовок', max_length=255)
-    content = models.TextField(verbose_name='Контент')
-    time_stamp = models.DateTimeField(default=timezone.now, verbose_name="время публикации")
-    edited = models.BooleanField(default=False, verbose_name="Редактирован ли?")
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True)
+    following = models.ManyToManyField('self', related_name='followers', symmetrical=False, blank=True)
 
     def __str__(self):
-        return f'{self.title} : {self.time_stamp}'
+        return self.user.username
 
-class PostAttachments(models.Model):
-    name = models.CharField(verbose_name='Название файла', blank=True, null=True)
-    image = models.ImageField(upload_to='files', verbose_name='Файл')
-    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
-
-    def save(self, *args, **kwargs):
-        self.name = self.image.name.split('.')[0].capitalize()
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'{self.name or "Вложение"} для поста {self.post.title}'
-
-class Vacancy(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    posted_at = models.DateTimeField(auto_now_add=True)
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+    
+class Follow(models.Model):
+    follower = models.ForeignKey(User, related_name='following', on_delete=models.CASCADE)
+    following = models.ForeignKey(User, related_name='followers', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-class Response(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE)
-    responded_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        unique_together = ('follower', 'following')
 
     def __str__(self):
-        return f"{self.user} откликнулся на {self.vacancy.title}"
+        return f"{self.follower.username} follows {self.following.username}"

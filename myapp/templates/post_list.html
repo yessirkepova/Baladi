@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Posts</h2>
+<a href="{% url 'post-create' %}" class="btn btn-primary mb-3">Create Post</a>
+<ul class="list-group">
+    {% for post in posts %}
+        <li class="list-group-item d-flex justify-content-between">
+            <div>
+                <strong>{{ post.title }}</strong><br>
+                {{ post.content|truncatewords:20 }}
+            </div>
+            <div>
+                <a href="{% url 'post-update' post.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </li>
+    {% empty %}
+        <li class="list-group-item">No posts found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
